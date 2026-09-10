@@ -1,0 +1,16 @@
+{
+  "name": "Hizmet & Fiyat Listesi",
+  "short_name": "Fiyat Listesi",
+  "description": "Uygulama, web sitesi ve AI reklam videosu hizmet fiyat listesi",
+  "lang": "tr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f5f4ee",
+  "theme_color": "#125f5c",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
