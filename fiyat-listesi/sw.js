@@ -1,4 +1,4 @@
-const CACHE = "fiyat-listesi-v1";
+const CACHE = "fiyat-listesi-v2";
 const SHELL = [
   "./",
   "./index.html",
