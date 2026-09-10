@@ -108,6 +108,16 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .foot{padding:14px 22px 20px;border-top:1px solid var(--hair);display:flex;flex-wrap:wrap;
   justify-content:space-between;gap:6px;font-size:11px;color:var(--faint);}
 
+.ov{position:fixed;inset:0;z-index:50;background:rgba(12,16,16,.85);display:flex;flex-direction:column;
+  align-items:center;gap:14px;padding:20px 16px;overflow:auto;-webkit-overflow-scrolling:touch;}
+.ov[hidden]{display:none;}
+.ov .tip{color:#fff;font-size:13px;line-height:1.5;text-align:center;max-width:360px;margin:0;}
+.ov img{max-width:100%;height:auto;border-radius:10px;background:#fff;box-shadow:0 12px 44px rgba(0,0,0,.5);}
+.ov .acts{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;padding-bottom:20px;}
+.ov .acts a,.ov .acts button{font-family:var(--sans);font-weight:700;font-size:14px;padding:12px 18px;
+  border-radius:11px;border:none;cursor:pointer;text-decoration:none;background:var(--teal);color:#fff;}
+.ov .acts .sec{background:#fff;color:var(--ink);}
+
 /* ---------- editable ---------- */
 [contenteditable]{outline:none;border-radius:4px;}
 body:not(.shot) [contenteditable]:hover{background:color-mix(in srgb,var(--teal) 10%,transparent);
@@ -136,11 +146,12 @@ body:not(.shot) [contenteditable]:focus{background:var(--card);
   <div class="sheet" id="sheet">
 
     <div class="masthead">
-      <div class="biz" contenteditable data-k="biz">İşletme / Studio Adın</div>
+      <div class="biz" contenteditable data-k="biz">Nova Dijital</div>
       <div class="kind" contenteditable data-k="kind">Hizmet &amp; Fiyat Listesi</div>
       <div class="meta">
+        <span>✉️ <span contenteditable data-k="mail">novadijitaltr65@gmail.com</span></span>
         <span>📞 <span contenteditable data-k="tel">05xx xxx xx xx</span></span>
-        <span>📷 <span contenteditable data-k="ig">@kullanici_adi</span></span>
+        <span>📷 <span contenteditable data-k="ig">@novadijitaltr</span></span>
         <span>Güncelleme: <span contenteditable data-k="tarih">Eylül 2026</span></span>
       </div>
     </div>
@@ -240,10 +251,20 @@ body:not(.shot) [contenteditable]:focus{background:var(--card);
     </div>
 
     <div class="foot">
-      <span contenteditable data-k="f1">Teklif için mesaj atın.</span>
-      <span contenteditable data-k="f2">© 2026</span>
+      <span contenteditable data-k="f1">Teklif için e-posta veya WhatsApp'tan yazın.</span>
+      <span contenteditable data-k="f2">Nova Dijital · 2026</span>
     </div>
 
+  </div>
+</div>
+
+<div class="ov" id="ov" hidden>
+  <p class="tip">Görsele <b>parmağını basılı tut</b> → <b>“Resmi indir / kaydet”</b>. Ya da alttaki butonları kullan.</p>
+  <img id="ovImg" alt="Fiyat listesi görseli">
+  <div class="acts">
+    <button id="ovShare" class="sec" type="button" hidden>📤 Paylaş / Kaydet</button>
+    <a id="ovDl" class="sec" download>⬇️ İndir</a>
+    <button id="ovClose" type="button">Kapat</button>
   </div>
 </div>
 
@@ -289,25 +310,50 @@ document.getElementById("prn").addEventListener("click",function(){
   window.print();
 });
 
+var ov=document.getElementById("ov");
+var ovImg=document.getElementById("ovImg");
+var ovDl=document.getElementById("ovDl");
+var ovShare=document.getElementById("ovShare");
+var lastUrl=null;
+document.getElementById("ovClose").addEventListener("click",function(){
+  ov.hidden=true;
+  if(lastUrl){setTimeout(function(){URL.revokeObjectURL(lastUrl);},1000);lastUrl=null;}
+});
+
 document.getElementById("png").addEventListener("click",async function(){
   var b=this,lbl=b.textContent;
-  if(typeof html2canvas==="undefined"){alert("Görsel için internet gerekli (ilk açılışta).");return;}
+  if(typeof html2canvas==="undefined"){alert("Görsel için internet gerekli (ilk açılışta bir kez bağlan).");return;}
   if(document.activeElement&&document.activeElement.blur)document.activeElement.blur();
   b.disabled=true;b.textContent="Hazırlanıyor…";
   document.body.classList.add("shot");
   try{
     var el=document.getElementById("sheet");
     var bg=getComputedStyle(document.body).backgroundColor||"#f5f4ee";
-    var canvas=await html2canvas(el,{scale:2.5,backgroundColor:bg,useCORS:true,windowWidth:820});
+    var canvas=await html2canvas(el,{scale:2,backgroundColor:bg,useCORS:true,windowWidth:820,scrollX:0,scrollY:0});
     document.body.classList.remove("shot");
     var name=(document.querySelector('[data-k="biz"]').textContent.trim()||"fiyat-listesi")
       .replace(/\s+/g,"-").replace(/[^0-9A-Za-zçğıöşüÇĞİÖŞÜ_-]/g,"").toLowerCase()||"fiyat-listesi";
-    canvas.toBlob(function(blob){
-      var url=URL.createObjectURL(blob);
-      var a=document.createElement("a");a.href=url;a.download=name+"-fiyat-listesi.png";
-      document.body.appendChild(a);a.click();a.remove();
-      setTimeout(function(){URL.revokeObjectURL(url);},4000);
-    },"image/png");
+    var fname=name+"-fiyat-listesi.png";
+    await new Promise(function(res){
+      canvas.toBlob(function(blob){
+        if(lastUrl)URL.revokeObjectURL(lastUrl);
+        lastUrl=URL.createObjectURL(blob);
+        ovImg.src=lastUrl;
+        ovDl.href=lastUrl; ovDl.download=fname;
+        ovShare.hidden=true;
+        try{
+          var file=new File([blob],fname,{type:"image/png"});
+          if(navigator.canShare&&navigator.canShare({files:[file]})){
+            ovShare.hidden=false;
+            ovShare.onclick=function(){
+              navigator.share({files:[file],title:"Fiyat Listesi"}).catch(function(){});
+            };
+          }
+        }catch(e){}
+        ov.hidden=false;
+        res();
+      },"image/png");
+    });
   }catch(err){
     document.body.classList.remove("shot");
     alert("Görsel oluşturulamadı: "+(err&&err.message||err));
