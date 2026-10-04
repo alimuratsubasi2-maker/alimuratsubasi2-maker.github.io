@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nova Dijital | Web Sitesi, Uygulama ve AI Video Hizmetleri</title>
+<meta name="description" content="Nova Dijital: küçük işletmeler için web sitesi, uygulama ve AI reklam videosu hizmetleri.">
+<style>
+  :root {
+    --bg: #0b0d12;
+    --panel: #151923;
+    --text: #f2f4f8;
+    --muted: #9aa3b5;
+    --accent: #7c9cff;
+    --border: #252b3a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+  header { padding: 28px 0 12px; }
+  .brand { font-size: 1.4rem; font-weight: 700; letter-spacing: .3px; }
+  .brand span { color: var(--accent); }
+  nav a { color: var(--muted); text-decoration: none; margin-right: 16px; font-size: .95rem; }
+  nav a:hover { color: var(--text); }
+  .hero { padding: 56px 0 40px; }
+  .hero h1 { font-size: clamp(1.8rem, 4.5vw, 2.6rem); line-height: 1.2; margin-bottom: 16px; }
+  .hero p { color: var(--muted); max-width: 640px; font-size: 1.05rem; }
+  .btn {
+    display: inline-block; margin-top: 24px; padding: 12px 22px; border-radius: 10px;
+    background: var(--accent); color: #0b0d12; font-weight: 600; text-decoration: none;
+  }
+  section { padding: 40px 0; border-top: 1px solid var(--border); }
+  section h2 { font-size: 1.5rem; margin-bottom: 20px; }
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .card {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 22px;
+  }
+  .card h3 { font-size: 1.15rem; margin-bottom: 8px; }
+  .card .price { color: var(--accent); font-weight: 600; margin: 10px 0; }
+  .card ul { padding-left: 18px; color: var(--muted); font-size: .95rem; }
+  .card li { margin: 4px 0; }
+  .note { color: var(--muted); font-size: .9rem; margin-top: 14px; }
+  .contact p { color: var(--muted); margin-bottom: 8px; }
+  .contact a { color: var(--accent); }
+  footer { border-top: 1px solid var(--border); padding: 24px 0 40px; color: var(--muted); font-size: .85rem; }
+  footer a { color: var(--muted); margin-right: 14px; }
+</style>
+</head>
+<body>
+<header class="wrap">
+  <div class="brand">Nova<span>Dijital</span></div>
+  <nav style="margin-top:10px">
+    <a href="#hizmetler">Hizmetler</a>
+    <a href="#fiyatlar">Fiyatlar</a>
+    <a href="#iletisim">İletişim</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <h1>İşletmeniz için profesyonel dijital çözümler</h1>
+    <p>Web sitesi, mobil uygulama ve AI ile üretilen reklam videoları. Her projeye özel çalışıyor, açık fiyat ve yazılı teklif sunuyoruz.</p>
+    <a class="btn" href="#iletisim">Teklif al</a>
+  </div>
+
+  <section id="hizmetler">
+    <h2>Hizmetler</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Web Sitesi</h3>
+        <p class="note">Telefon ve bilgisayarda sorunsuz çalışan, arama motorlarına uygun siteler.</p>
+        <ul>
+          <li>Tek sayfa (tanıtım) sitesi</li>
+          <li>Kurumsal çok sayfalı site</li>
+          <li>E-ticaret sitesi (ödeme entegrasyonu dahil)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Mobil Uygulama</h3>
+        <p class="note">Telefona eklenebilen (PWA) sipariş, takip ve yönetim uygulamaları.</p>
+        <ul>
+          <li>Sipariş ve müşteri takibi</li>
+          <li>Excel / PDF çıktı</li>
+          <li>Çevrimdışı çalışma</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>AI Reklam Videosu</h3>
+        <p class="note">Ürün ve işletmeniz için kısa, dikkat çekici reklam videoları.</p>
+        <ul>
+          <li>Tek video</li>
+          <li>Aylık paket (4 video)</li>
+          <li>Sosyal medya formatları</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="fiyatlar">
+    <h2>Fiyatlar</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Web Sitesi</h3>
+        <div class="price">Tek sayfa: 3.000 - 7.000 TL</div>
+        <div class="price">Kurumsal: 8.000 - 20.000 TL</div>
+        <div class="price">E-ticaret: 20.000 TL'den başlar</div>
+      </div>
+      <div class="card">
+        <h3>Mobil Uygulama</h3>
+        <div class="price">Başlangıç: 4.000 - 9.000 TL</div>
+        <div class="price">Standart: 10.000 - 22.000 TL</div>
+        <div class="price">Pro: 25.000 TL'den başlar</div>
+      </div>
+      <div class="card">
+        <h3>AI Reklam Videosu</h3>
+        <div class="price">Tek video: 750 - 2.000 TL</div>
+        <div class="price">Aylık 4 video: 3.000 - 6.500 TL</div>
+      </div>
+    </div>
+    <p class="note">Fiyatlar proje kapsamına göre değişir. Kesin fiyat için yazılı teklif hazırlıyoruz. Çalışma başlamadan ödemenin %50'si peşin alınır, kalan tutar teslimde ödenir. Her projede 2 revizyon ücretsizdir.</p>
+  </section>
+
+  <section id="iletisim" class="contact">
+    <h2>İletişim</h2>
+    <p>E-posta: <a href="mailto:novadijitaltr65@gmail.com">novadijitaltr65@gmail.com</a></p>
+    <p>Teklif için projenizi kısaca e-postayla anlatmanız yeterli.</p>
+  </section>
+</main>
+
+<footer class="wrap">
+  <p>&copy; 2026 Nova Dijital</p>
+  <p style="margin-top:10px">
+    <a href="yasal.html#mesafeli-satis">Mesafeli Satış Sözleşmesi</a>
+    <a href="yasal.html#iade-iptal">İade ve İptal Koşulları</a>
+    <a href="yasal.html#gizlilik">Gizlilik ve KVKK</a>
+  </p>
+</footer>
+</body>
+</html>
