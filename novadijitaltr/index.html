@@ -3,74 +3,136 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>novadijitaltr | Nova Dijital Projeleri</title>
-<meta name="description" content="Nova Dijital tarafından hazırlanan web sitesi, uygulama ve dijital projeler.">
+<title>NOVADİJİTALTR | Mobil Uygulama ve Web Sitesi</title>
+<meta name="description" content="novadijitaltr: sipariş ve takip uygulamaları, web siteleri ve dijital çözümler.">
 <style>
-  :root { --bg:#0b0d12; --panel:#151923; --text:#f2f4f8; --muted:#9aa3b5; --accent:#7c9cff; --border:#252b3a; }
+  :root { --bg:#f7f5f2; --text:#1d1b19; --muted:#6f6a64; --line:#e3ded7; --accent:#1d1b19; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg:#121110; --text:#f1ede8; --muted:#a39d96; --line:#2b2825; --accent:#f1ede8; }
+  }
+  :root[data-theme="dark"] { --bg:#121110; --text:#f1ede8; --muted:#a39d96; --line:#2b2825; --accent:#f1ede8; }
   * { box-sizing:border-box; margin:0; padding:0; }
-  body { background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; line-height:1.6; }
-  .wrap { max-width:960px; margin:0 auto; padding:0 16px; }
-  header { padding:28px 0 12px; }
-  .brand { font-size:1.4rem; font-weight:700; }
-  .brand span { color:var(--accent); }
-  .hero { padding:56px 0 36px; }
-  .hero h1 { font-size:clamp(1.8rem,4.5vw,2.6rem); line-height:1.2; margin-bottom:14px; }
-  .hero p { color:var(--muted); max-width:640px; font-size:1.05rem; }
-  section { padding:36px 0; border-top:1px solid var(--border); }
-  section h2 { font-size:1.5rem; margin-bottom:18px; }
-  .grid { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
-  .card { background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:22px; }
-  .card h3 { font-size:1.1rem; margin-bottom:6px; }
-  .card p { color:var(--muted); font-size:.95rem; }
-  .card a { display:inline-block; margin-top:12px; color:var(--accent); text-decoration:none; font-weight:600; }
-  .tag { display:inline-block; font-size:.75rem; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:2px 10px; margin-bottom:10px; }
-  .contact a { color:var(--accent); }
-  footer { border-top:1px solid var(--border); padding:24px 0 40px; color:var(--muted); font-size:.85rem; }
+  body { background:var(--bg); color:var(--text); font-family:Georgia,"Times New Roman",serif; line-height:1.6; }
+  .sans { font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  .wrap { max-width:1000px; margin:0 auto; padding:0 20px; }
+  header { display:flex; justify-content:space-between; align-items:center; padding:24px 0; border-bottom:1px solid var(--line); }
+  .logo { font-size:1.1rem; letter-spacing:.25em; font-weight:700; }
+  nav a { color:var(--muted); text-decoration:none; margin-left:22px; font-size:.85rem; letter-spacing:.08em; text-transform:uppercase; }
+  nav a:hover { color:var(--text); }
+  .hero { text-align:center; padding:90px 0 70px; }
+  .eyebrow { font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:18px; }
+  .hero h1 { font-size:clamp(2rem,5vw,3.2rem); font-weight:400; line-height:1.2; max-width:760px; margin:0 auto 18px; }
+  .hero p { color:var(--muted); max-width:560px; margin:0 auto; font-size:1.05rem; }
+  .btn { display:inline-block; margin-top:32px; padding:14px 30px; border:1px solid var(--accent); color:var(--text); text-decoration:none; letter-spacing:.14em; text-transform:uppercase; font-size:.8rem; font-family:system-ui,sans-serif; }
+  .btn:hover { background:var(--accent); color:var(--bg); }
+  section { padding:70px 0; border-top:1px solid var(--line); }
+  .sec-title { text-align:center; font-size:1.6rem; font-weight:400; margin-bottom:12px; }
+  .sec-sub { text-align:center; color:var(--muted); margin-bottom:44px; font-size:.95rem; }
+  .grid { display:grid; gap:28px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); }
+  .item { border:1px solid var(--line); padding:30px 26px; }
+  .item .tag { font-family:system-ui,sans-serif; font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); }
+  .item h3 { font-weight:400; font-size:1.25rem; margin:10px 0 10px; }
+  .item p { color:var(--muted); font-size:.95rem; }
+  .price { font-family:system-ui,sans-serif; font-size:.9rem; margin-top:16px; }
+  .soon { text-align:center; }
+  .soon p { color:var(--muted); max-width:560px; margin:0 auto 26px; }
+  .contact { text-align:center; }
+  .contact p { color:var(--muted); margin-bottom:8px; font-size:.95rem; }
+  .contact a { color:var(--text); }
+  footer { border-top:1px solid var(--line); padding:28px 0 40px; text-align:center; color:var(--muted); font-size:.8rem; font-family:system-ui,sans-serif; }
+  footer a { color:var(--muted); margin:0 10px; }
+  @media (max-width:600px) { nav a { margin-left:14px; font-size:.75rem; } .hero { padding:60px 0 50px; } }
 </style>
 </head>
 <body>
-<header class="wrap">
-  <div class="brand">novadijital<span>tr</span></div>
-</header>
+<div class="wrap">
+  <header>
+    <div class="logo">NOVADİJİTALTR</div>
+    <nav class="sans">
+      <a href="#hizmetler">Hizmetler</a>
+      <a href="#fiyatlar">Fiyatlar</a>
+      <a href="#iletisim">İletişim</a>
+    </nav>
+  </header>
 
-<main class="wrap">
   <div class="hero">
-    <h1>Yaptığımız işler</h1>
-    <p>Web siteleri, mobil uygulamalar ve AI ile üretilen reklam videoları. Her projeyi müşterinin ihtiyacına göre tasarlıyoruz.</p>
+    <div class="eyebrow sans">Uygulama · Web Sitesi · Dijital Çözüm</div>
+    <h1>İşinizi kolaylaştıran dijital araçlar</h1>
+    <p>Sipariş takibi, müşteri yönetimi ve kurumsal web siteleri. Her işe özel hazırlanır, açık fiyatla sunulur.</p>
+    <a class="btn sans" href="#iletisim">Teklif al</a>
   </div>
+</div>
 
-  <section>
-    <h2>Projeler</h2>
+<div class="wrap">
+  <section id="hizmetler">
+    <h2 class="sec-title">Hizmetler</h2>
+    <p class="sec-sub">Her proje, işletmenizin ihtiyacına göre tasarlanır.</p>
     <div class="grid">
-      <div class="card">
-        <span class="tag">Uygulama</span>
-        <h3>Sipariş ve Müşteri Takip Uygulaması</h3>
-        <p>Sipariş, teslimat ve tutar takibi. Telefona eklenebilen, Excel ve PDF çıktı alabilen uygulama.</p>
-        <a href="https://alimuratsubasi2-maker.github.io/patates-takip/" target="_blank" rel="noopener">Canlı önizleme &rarr;</a>
+      <div class="item">
+        <div class="tag sans">Uygulama</div>
+        <h3>Sipariş ve Takip Uygulaması</h3>
+        <p>Siparişleri, teslimatları ve tutarları tek yerden takip edin. Telefona eklenebilir, Excel ve PDF çıktı alır.</p>
+        <div class="price sans">4.000 – 9.000 TL'den başlar</div>
       </div>
-      <div class="card">
-        <span class="tag">Araç</span>
-        <h3>Düzenlenebilir Fiyat Listesi</h3>
-        <p>Fiyatları telefondan dokunarak düzenleyip görsel olarak paylaşabileceğiniz sayfa.</p>
-        <a href="https://alimuratsubasi2-maker.github.io/fiyat-listesi/" target="_blank" rel="noopener">Canlı önizleme &rarr;</a>
+      <div class="item">
+        <div class="tag sans">Web Sitesi</div>
+        <h3>Kurumsal ve Tanıtım Sitesi</h3>
+        <p>Telefon ve bilgisayarda sorunsuz çalışan, arama motorlarına uygun siteler.</p>
+        <div class="price sans">3.000 – 20.000 TL arası</div>
       </div>
-      <div class="card">
-        <span class="tag">Web Sitesi</span>
-        <h3>Nova Dijital Hizmet Sitesi</h3>
-        <p>Hizmetlerimizi, fiyatlarımızı ve iletişim bilgilerimizi anlatan tanıtım sitesi.</p>
-        <a href="../novadijital/" target="_blank" rel="noopener">Siteyi incele &rarr;</a>
+      <div class="item">
+        <div class="tag sans">Video</div>
+        <h3>AI Reklam Videosu</h3>
+        <p>Ürününüz ve işletmeniz için kısa, dikkat çekici reklam videoları.</p>
+        <div class="price sans">750 – 2.000 TL (tek video)</div>
       </div>
     </div>
   </section>
 
-  <section class="contact">
-    <h2>İletişim</h2>
-    <p style="color:var(--muted)">Projeniz için e-posta gönderin: <a href="mailto:novadijitaltr65@gmail.com">novadijitaltr65@gmail.com</a></p>
+  <section id="fiyatlar">
+    <h2 class="sec-title">Fiyatlar</h2>
+    <p class="sec-sub">Kesin fiyat için projenizi anlatın, yazılı teklif hazırlayalım.</p>
+    <div class="grid">
+      <div class="item">
+        <div class="tag sans">Uygulama</div>
+        <h3>Başlangıç · Standart · Pro</h3>
+        <p class="price sans">4.000 – 9.000 TL · 10.000 – 22.000 TL · 25.000 TL'den başlar</p>
+      </div>
+      <div class="item">
+        <div class="tag sans">Web Sitesi</div>
+        <h3>Tek Sayfa · Kurumsal · E-ticaret</h3>
+        <p class="price sans">3.000 – 7.000 TL · 8.000 – 20.000 TL · 20.000 TL'den başlar</p>
+      </div>
+      <div class="item">
+        <div class="tag sans">Video</div>
+        <h3>Tek Video · Aylık Paket</h3>
+        <p class="price sans">750 – 2.000 TL · Aylık 4 video 3.000 – 6.500 TL</p>
+      </div>
+    </div>
+    <p class="sec-sub" style="margin:34px auto 0;max-width:620px;">Çalışma başlamadan ödemenin %50'si peşin alınır, kalanı teslimde ödenir. Her projede 2 revizyon ücretsizdir.</p>
   </section>
-</main>
 
-<footer class="wrap">
-  <p>&copy; 2026 Nova Dijital</p>
+  <section class="soon" id="yakinda">
+    <h2 class="sec-title">Yakında</h2>
+    <p>Hazır uygulama paketleri ve kurumsal şablonlar çok yakında bu sayfada olacak. Duyurulardan haberdar olmak için bize yazın.</p>
+  </section>
+
+  <section class="contact" id="iletisim">
+    <h2 class="sec-title">İletişim</h2>
+    <p class="sec-sub">Projenizi kısaca anlatın, en kısa sürede dönüş yapalım.</p>
+    <p><a class="sans" href="mailto:novadijitaltr65@gmail.com">novadijitaltr65@gmail.com</a></p>
+  </section>
+</div>
+
+<footer class="sans">
+  <div class="wrap">
+    <p>&copy; 2026 NOVADİJİTALTR</p>
+    <p style="margin-top:10px;">
+      <a href="../novadijital/yasal.html">Mesafeli Satış</a>
+      <a href="../novadijital/yasal.html#iade-iptal">İade ve İptal</a>
+      <a href="../novadijital/yasal.html#gizlilik">Gizlilik ve KVKK</a>
+    </p>
+  </div>
 </footer>
 </body>
 </html>
