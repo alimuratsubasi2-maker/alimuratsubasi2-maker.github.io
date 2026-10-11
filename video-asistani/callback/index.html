@@ -4,6 +4,8 @@
 <p id="err" style="color:#FF5A5F"></p>
 <script>
 const q=new URLSearchParams(location.search);
+// local panel flow: hand the code straight back to the panel running on this computer
+if((q.get("state")||"").startsWith("local_")){location.replace("http://127.0.0.1:8765/oauth"+location.search);}
 document.getElementById("code").textContent=q.get("code")||"(kod yok)";
 if(q.get("error")) document.getElementById("err").textContent="Hata: "+q.get("error")+" "+(q.get("error_description")||"");
 document.getElementById("b").onclick=async()=>{const t=q.get("code")||"";try{await navigator.clipboard.writeText(t)}catch(e){}document.getElementById("b").textContent="Kopyalandı ✓"};
